@@ -38,6 +38,7 @@ const toolData = [
   { nome: "AWS", icon: FaAws, descricao: "Plataforma de serviços em nuvem para hospedagem, armazenamento e computação.", descricaoLonga: "Amazon Web Services é a plataforma de nuvem mais abrangente do mundo, oferecendo mais de 200 serviços de infraestrutura, armazenamento, computação e inteligência artificial. Essencial para deploy, escalabilidade e gerenciamento de aplicações modernas.", nivel: 40, subtitulo: "Plataforma Cloud", tipo: "Cloud Computing", linguagem: "N/A", lancamento: "2006", desenvolvedor: "Amazon", features: ["EC2", "S3", "Lambda", "RDS", "DynamoDB", "CloudFront"], usadoEm: ["Deploy", "Armazenamento", "Serverless", "Infraestrutura"] },
 ];
 
+const base = import.meta.env.BASE_URL;
 const techId = (name: string) => `hud-${name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')}`;
 
 function App() {
@@ -285,7 +286,7 @@ function App() {
               <span className="foto-tech-label">IDENTIFICAÇÃO::AGENTE</span>
               <span className="foto-tech-label-right">HUD::ATIVO</span>
 
-              <img src="/milena.jpeg" alt="Milena Oliveira Alves" className="foto-milena-img" />
+              <img src={`${base}milena.jpeg`} alt="Milena Oliveira Alves" className="foto-milena-img" />
 
               <div className="foto-grid-overlay" />
 
@@ -523,7 +524,7 @@ function App() {
           {[
             {
               titulo: "Netflix Cover",
-              imagem: "/netflix-cover.png",
+              imagem: `${base}netflix-cover.png`,
               imgPosition: "top",
               descricao: "Sistema inspirado na interface da Netflix desenvolvido com HTML, CSS e JavaScript com o objetivo de proporcionar ao usuário uma experiência visual semelhante à de uma plataforma de streaming. O projeto utiliza responsividade, organização de layout e estilização moderna, além de praticar manipulação de elementos e estruturação de interfaces front-end.",
               tags: ["HTML", "JavaScript", "CSS"],
@@ -532,7 +533,7 @@ function App() {
             },
             {
               titulo: "Banco de Horas",
-              imagem: "/banco-de-horas.png",
+              imagem: `${base}banco-de-horas.png`,
               imgPosition: "10px center",
               descricao: "Sistema web de banco de horas desenvolvido com HTML, CSS e JavaScript com o objetivo de proporcionar ao usuário uma forma prática de registrar horários e acompanhar o saldo de horas trabalhadas. O projeto utiliza manipulação do DOM, lógica de programação e atualização dinâmica de dados, além de praticar responsividade e estruturação de interfaces front-end.",
               tags: ["HTML", "JavaScript", "CSS"],
@@ -541,7 +542,7 @@ function App() {
             },
             {
               titulo: "Portfólio",
-              imagem: "/portfolio-novo.png",
+              imagem: `${base}portfolio-novo.png`,
               imgPosition: "center",
               descricao: "Portfólio web desenvolvido com HTML, CSS, JavaScript e React com o objetivo de apresentar projetos, habilidades e informações profissionais de forma moderna e organizada. O projeto utiliza responsividade, componentização e estilização personalizada para proporcionar ao usuário uma navegação intuitiva e uma melhor visualização dos conteúdos e tecnologias utilizadas.",
               tags: ["React", "JavaScript", "Tailwind CSS"],
