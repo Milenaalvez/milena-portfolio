@@ -108,9 +108,7 @@ function App() {
         >
 
           {/* LOGO */}
-          <h2 className="cyber-nav-logo">
-            Milena OL.
-          </h2>
+          <img src={`${base}logotipo.png`} alt="Milena" className="h-10 md:h-12 w-auto" />
 
           {/* LINKS */}
           <div className="hidden md:flex items-center gap-14">
@@ -133,7 +131,6 @@ function App() {
         </div>
 
       </nav>
-é so 
       {/* GLOW */}
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#7C3AED] opacity-15 blur-[200px]" />
       <div className="absolute top-[200px] right-0 w-[400px] h-[400px] bg-[#FF1493] opacity-10 blur-[180px]" />
@@ -187,7 +184,7 @@ function App() {
         {/* BOTÕES */}
         <div className="flex items-center gap-3">
           <a
-            href="https://www.linkedin.com/in/milenaalvez/"
+            href="https://www.linkedin.com/in/milena-de-oliveira-alves-6b04052a6"
             target="_blank"
             rel="noopener noreferrer"
             className="hero-btn-primary w-[170px] h-[53px] rounded-[10px] flex items-center justify-center"
@@ -617,19 +614,7 @@ function App() {
         {/* GLOW */}
         <div className="absolute -left-40 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#D8B4FE] opacity-25 blur-[200px]" />
 
-        <h2
-          className="
-            w-full md:w-[1152px]
-            text-white
-            text-[28px] md:text-[32px]
-            font-semibold
-            tracking-[-2px]
-            text-center
-            font-['Hanken_Grotesk',sans-serif]
-            relative
-            z-10
-          "
-        >
+        <h2 className="exp-section-title z-10">
           Ferramentas
         </h2>
 
@@ -897,7 +882,7 @@ function App() {
           <div className="flex items-center gap-6 flex-wrap justify-center">
             <a href="https://github.com/Milenaalvez" target="_blank" rel="noopener noreferrer" className="contact-footer-link">GitHub</a>
             <a href="https://www.behance.net/milenaalves39" target="_blank" rel="noopener noreferrer" className="contact-footer-link">Behance</a>
-            <a href="https://www.linkedin.com/in/milenaalvez/" target="_blank" rel="noopener noreferrer" className="contact-footer-link">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/milena-de-oliveira-alves-6b04052a6" target="_blank" rel="noopener noreferrer" className="contact-footer-link">LinkedIn</a>
             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=milenayor020@gmail.com" target="_blank" rel="noopener noreferrer" className="contact-footer-link">Email</a>
           </div>
 
