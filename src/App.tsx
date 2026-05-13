@@ -546,8 +546,8 @@ function App() {
               imgPosition: "center",
               descricao: "Portfólio web desenvolvido com HTML, CSS, JavaScript e React com o objetivo de apresentar projetos, habilidades e informações profissionais de forma moderna e organizada. O projeto utiliza responsividade, componentização e estilização personalizada para proporcionar ao usuário uma navegação intuitiva e uma melhor visualização dos conteúdos e tecnologias utilizadas.",
               tags: ["React", "JavaScript", "Tailwind CSS"],
-              linkProjeto: "",
-              linkGitHub: "",
+              linkProjeto: "https://milenaalvez.github.io/milena-portfolio/#about",
+              linkGitHub: "https://github.com/Milenaalvez/milena-portfolio",
             },
           ].map((projeto) => (
             <div
