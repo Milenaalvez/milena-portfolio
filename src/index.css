@@ -7,6 +7,14 @@
   scroll-behavior:smooth;
 }
 
+.carousel-scroll::-webkit-scrollbar {
+  display: none;
+}
+.carousel-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 body{
   background: #030205;
   color:white;

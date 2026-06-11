@@ -515,8 +515,8 @@ function App() {
 
         {/* CARDS */}
         <div
-          className="flex flex-col md:flex-row items-stretch justify-center gap-6 w-full max-w-[1200px] flex-wrap"
-          style={{ marginTop: 90 }}
+          className="flex flex-row items-stretch gap-6 w-full overflow-x-auto pb-4 carousel-scroll px-4 md:px-8"
+          style={{ marginTop: 90, scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}
         >
           {[
             {
@@ -567,7 +567,8 @@ function App() {
           ].map((projeto) => (
             <div
               key={projeto.titulo}
-              className="proj-card rounded-[18px] flex flex-col w-full"
+              className="proj-card rounded-[18px] flex flex-col w-full shrink-0"
+              style={{ scrollSnapAlign: 'start' }}
             >
               <div className="proj-card-scantop" />
 
