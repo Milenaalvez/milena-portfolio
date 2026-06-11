@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import type { Project } from '../data/projects'
 
@@ -7,28 +7,25 @@ interface Props {
   projects: Project[]
 }
 
-const slideVariants = {
-  enter: (dir: number) => ({
-    x: dir > 0 ? '35%' : '-35%',
-    opacity: 0,
-  }),
-  center: {
-    x: 0,
-    opacity: 1,
-  },
-  exit: (dir: number) => ({
-    x: dir > 0 ? '-35%' : '35%',
-    opacity: 0,
-  }),
-}
-
 export default function ProjectCarousel({ projects }: Props) {
   const N = projects.length
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [direction, setDirection] = useState(1)
   const [itemsPerView, setItemsPerView] = useState(3)
   const [isPaused, setIsPaused] = useState(false)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  const baseOffset = itemsPerView
+  const displayProjects = [
+    ...projects.slice(-itemsPerView),
+    ...projects,
+    ...projects.slice(0, itemsPerView),
+  ]
+
+  const [displayOffset, setDisplayOffset] = useState(baseOffset)
+  const needsSnap = useRef(false)
+  const locked = useRef(false)
+  const pendingIdx = useRef(0)
+  const snapTransition = useRef(true)
 
   useEffect(() => {
     const handleResize = () => {
@@ -43,14 +40,34 @@ export default function ProjectCarousel({ projects }: Props) {
   }, [])
 
   const goNext = useCallback(() => {
-    setDirection(1)
-    setCurrentIndex(prev => (prev + 1) % N)
-  }, [N])
+    if (locked.current) return
+    locked.current = true
+    snapTransition.current = true
+
+    const nextIdx = (currentIndex + 1) % N
+    pendingIdx.current = nextIdx
+    if (currentIndex === N - 1) {
+      needsSnap.current = true
+      setDisplayOffset(baseOffset + N)
+    } else {
+      setDisplayOffset(baseOffset + nextIdx)
+    }
+  }, [currentIndex, N, baseOffset])
 
   const goPrev = useCallback(() => {
-    setDirection(-1)
-    setCurrentIndex(prev => (prev - 1 + N) % N)
-  }, [N])
+    if (locked.current) return
+    locked.current = true
+    snapTransition.current = true
+
+    const prevIdx = (currentIndex - 1 + N) % N
+    pendingIdx.current = prevIdx
+    if (currentIndex === 0) {
+      needsSnap.current = true
+      setDisplayOffset(baseOffset - 1)
+    } else {
+      setDisplayOffset(baseOffset + prevIdx)
+    }
+  }, [currentIndex, N, baseOffset])
 
   useEffect(() => {
     if (isPaused || N <= 1) return
@@ -58,9 +75,18 @@ export default function ProjectCarousel({ projects }: Props) {
     return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
   }, [isPaused, goNext, N])
 
-  const visibleProjects = Array.from({ length: itemsPerView }, (_, i) =>
-    projects[(currentIndex + i) % N]
-  )
+  const cardWidthPercent = 100 / itemsPerView
+
+  const handleAnimationComplete = () => {
+    if (needsSnap.current) {
+      needsSnap.current = false
+      const newIdx = pendingIdx.current
+      setCurrentIndex(newIdx)
+      snapTransition.current = false
+      setDisplayOffset(baseOffset + newIdx)
+    }
+    locked.current = false
+  }
 
   return (
     <div className="w-[85%] max-w-[1200px] mx-auto relative">
@@ -86,106 +112,115 @@ export default function ProjectCarousel({ projects }: Props) {
         </button>
 
         <div className="overflow-hidden rounded-[18px]">
-          <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
-              key={currentIndex}
-              className="flex"
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ type: 'spring', stiffness: 320, damping: 30, mass: 0.8 }}
-            >
-              {visibleProjects.map((project, slotIndex) => {
-                const isCenter = itemsPerView === 3 && slotIndex === 1
-                const isSide = itemsPerView === 3 && (slotIndex === 0 || slotIndex === 2)
-                const cardWidthPercent = 100 / itemsPerView
+          <motion.div
+            className="flex"
+            animate={{ x: `-${displayOffset * cardWidthPercent}%` }}
+            transition={snapTransition.current
+              ? { type: 'spring', stiffness: 320, damping: 30, mass: 0.8 }
+              : { type: false }
+            }
+            onAnimationComplete={handleAnimationComplete}
+          >
+            {displayProjects.map((project, index) => {
+              const posInView = index - displayOffset
+              const isVisible = posInView >= 0 && posInView < itemsPerView
 
-                let cardTransform = isCenter ? 'scale(1.05)' : isSide ? 'scale(0.88)' : 'scale(1)'
-                if (isSide && slotIndex === 0) {
-                  cardTransform = 'scale(0.88) perspective(800px) rotateY(4deg)'
-                }
-                if (isSide && slotIndex === 2) {
-                  cardTransform = 'scale(0.88) perspective(800px) rotateY(-4deg)'
-                }
-
-                const cardStyle: React.CSSProperties = {
-                  boxShadow: isCenter
-                    ? '0 0 50px rgba(255,20,147,0.25), 0 0 100px rgba(216,180,254,0.12), 0 25px 60px rgba(0,0,0,0.5)'
-                    : '0 0 20px rgba(255,20,147,0.04)',
-                  borderColor: isCenter ? 'rgba(255,20,147,0.4)' : undefined,
-                  transform: cardTransform,
-                  filter: isCenter ? 'brightness(1.1)' : isSide ? 'brightness(0.6)' : undefined,
-                  opacity: isSide ? 0.55 : 1,
-                  zIndex: isCenter ? 2 : 1,
-                  transformOrigin: isSide && slotIndex === 0
-                    ? 'right center'
-                    : isSide && slotIndex === 2
-                      ? 'left center'
-                      : 'center center',
-                }
-
+              if (!isVisible) {
                 return (
                   <div
-                    key={project.titulo}
-                    className="shrink-0 px-2 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    key={`${project.titulo}-${index}`}
+                    className="shrink-0 px-2"
                     style={{ width: `${cardWidthPercent}%` }}
+                  />
+                )
+              }
+
+              const isCenter = itemsPerView === 3 && posInView === 1
+              const isSide = itemsPerView === 3 && (posInView === 0 || posInView === 2)
+
+              let cardTransform = isCenter ? 'scale(1.05)' : isSide ? 'scale(0.88)' : 'scale(1)'
+              if (isSide && posInView === 0) {
+                cardTransform = 'scale(0.88) perspective(800px) rotateY(4deg)'
+              }
+              if (isSide && posInView === 2) {
+                cardTransform = 'scale(0.88) perspective(800px) rotateY(-4deg)'
+              }
+
+              const cardStyle: React.CSSProperties = {
+                boxShadow: isCenter
+                  ? '0 0 50px rgba(255,20,147,0.25), 0 0 100px rgba(216,180,254,0.12), 0 25px 60px rgba(0,0,0,0.5)'
+                  : '0 0 20px rgba(255,20,147,0.04)',
+                borderColor: isCenter ? 'rgba(255,20,147,0.4)' : undefined,
+                transform: cardTransform,
+                filter: isCenter ? 'brightness(1.1)' : isSide ? 'brightness(0.6)' : undefined,
+                opacity: isSide ? 0.55 : 1,
+                zIndex: isCenter ? 2 : 1,
+                transformOrigin: isSide && posInView === 0
+                  ? 'right center'
+                  : isSide && posInView === 2
+                    ? 'left center'
+                    : 'center center',
+              }
+
+              return (
+                <div
+                  key={`${project.titulo}-${index}`}
+                  className="shrink-0 px-2 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                  style={{ width: `${cardWidthPercent}%` }}
+                >
+                  <div
+                    className="proj-card rounded-[18px] flex flex-col w-full transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    style={cardStyle}
                   >
-                    <div
-                      className="proj-card rounded-[18px] flex flex-col w-full transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                      style={cardStyle}
-                    >
-                      <div className="proj-card-scantop" />
-                      <div className="proj-image-wrap">
-                        <img
-                          src={project.imagem}
-                          alt={project.titulo}
-                          className="proj-image"
-                          style={{ objectPosition: project.imgPosition || 'center' }}
-                        />
-                      </div>
-                      <div className="proj-content">
-                        <h3 className="proj-title">{project.titulo}</h3>
-                        <p className="proj-desc">{project.descricao}</p>
-                        {project.tags.length > 0 && (
-                          <div className="flex items-center gap-[8px] flex-wrap" style={{ marginTop: 14 }}>
-                            {project.tags.map(tag => (
-                              <span key={tag} className="proj-tag">{tag}</span>
-                            ))}
-                          </div>
-                        )}
-                        <div className="flex items-center justify-center gap-3" style={{ marginTop: 20 }}>
-                          {project.linkProjeto && (
-                            <a
-                              href={project.linkProjeto}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="proj-btn-primary flex items-center justify-center rounded-[10px]"
-                              style={{ width: 140, height: 42 }}
-                            >
-                              Ver mais
-                            </a>
-                          )}
-                          {project.linkGitHub && (
-                            <a
-                              href={project.linkGitHub}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="proj-btn-secondary flex items-center justify-center rounded-[10px]"
-                              style={{ width: 120, height: 42 }}
-                            >
-                              GitHub
-                            </a>
-                          )}
+                    <div className="proj-card-scantop" />
+                    <div className="proj-image-wrap">
+                      <img
+                        src={project.imagem}
+                        alt={project.titulo}
+                        className="proj-image"
+                        style={{ objectPosition: project.imgPosition || 'center' }}
+                      />
+                    </div>
+                    <div className="proj-content">
+                      <h3 className="proj-title">{project.titulo}</h3>
+                      <p className="proj-desc">{project.descricao}</p>
+                      {project.tags.length > 0 && (
+                        <div className="flex items-center gap-[8px] flex-wrap" style={{ marginTop: 14 }}>
+                          {project.tags.map(tag => (
+                            <span key={tag} className="proj-tag">{tag}</span>
+                          ))}
                         </div>
+                      )}
+                      <div className="flex items-center justify-center gap-3" style={{ marginTop: 20 }}>
+                        {project.linkProjeto && (
+                          <a
+                            href={project.linkProjeto}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="proj-btn-primary flex items-center justify-center rounded-[10px]"
+                            style={{ width: 140, height: 42 }}
+                          >
+                            Ver mais
+                          </a>
+                        )}
+                        {project.linkGitHub && (
+                          <a
+                            href={project.linkGitHub}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="proj-btn-secondary flex items-center justify-center rounded-[10px]"
+                            style={{ width: 120, height: 42 }}
+                          >
+                            GitHub
+                          </a>
+                        )}
                       </div>
                     </div>
                   </div>
-                )
-              })}
-            </motion.div>
-          </AnimatePresence>
+                </div>
+              )
+            })}
+          </motion.div>
         </div>
       </div>
 
@@ -194,8 +229,10 @@ export default function ProjectCarousel({ projects }: Props) {
           <button
             key={i}
             onClick={() => {
-              setDirection(i > currentIndex ? 1 : -1)
-              setCurrentIndex(i)
+              const fwd = (i - currentIndex + N) % N
+              const bwd = (currentIndex - i + N) % N
+              if (bwd < fwd) for (let j = 0; j < bwd; j++) goPrev()
+              else for (let j = 0; j < fwd; j++) goNext()
             }}
             className={`rounded-full transition-all duration-300 ${
               i === currentIndex
