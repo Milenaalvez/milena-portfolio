@@ -2,6 +2,8 @@
 import { FaGithub, FaPython, FaCss3Alt, FaReact, FaHtml5, FaDatabase, FaAws } from "react-icons/fa";
 import { SiFigma, SiTailwindcss } from "react-icons/si";
 import { MdDesignServices } from "react-icons/md";
+import ProjectCarousel from "./components/ProjectCarousel";
+import { projects } from "./data/projects";
 
 const techData: Record<string, { descricao: string; nivel: number }> = {
   React: { descricao: "Biblioteca para construção de interfaces de usuário interativas e componentizadas.", nivel: 50 },
@@ -505,123 +507,10 @@ function App() {
 
       </section>
 
-      {/* ESPAÇO PROJETOS */}
-      <div className="h-[40px] md:h-[60px]" />
-
       {/* PROJETOS */}
-      <section id="projetos" className="min-h-screen flex flex-col items-center px-6 md:px-0 relative" style={{ scrollMarginTop: 100 }}>
-
-        <h2 className="proj-section-title">Meus Projetos</h2>
-
-        {/* CARDS */}
-        <div
-          className="flex flex-row items-stretch gap-6 w-full overflow-x-auto pb-4 carousel-scroll px-4 md:px-8"
-          style={{ marginTop: 90, scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}
-        >
-          {[
-            {
-              titulo: "Chronos",
-              imagem: `${base}chronos.png`,
-              imgPosition: "center",
-              descricao: "Sistema completo de gestão de pessoas com registro de jornada, banco de horas, controle de férias, solicitações (tickets) e relatórios. Desenvolvido com React, TypeScript, Node.js, PostgreSQL e Supabase, utiliza autenticação JWT, envio de e-mails e dashboard administrativo com permissões por cargo.",
-              tags: ["React", "TypeScript", "Node.js", "PostgreSQL", "Supabase"],
-              linkProjeto: "https://chronos-blond-gamma.vercel.app",
-              linkGitHub: "https://github.com/Milenaalvez/.vscode/tree/main/chronos",
-            },
-            {
-              titulo: "DONNOS Docs",
-              imagem: `${base}certidoes.png`,
-              imgPosition: "center",
-              descricao: "Plataforma web que automatiza a busca de certidões imobiliárias em portais públicos brasileiros (Receita Federal, TRF1 e TJDFT). Utiliza Puppeteer com stealth para navegação automatizada, resolucão de CAPTCHAs com intervenção humana e consolidação de PDFs em um dossiê único.",
-              tags: ["TypeScript", "Node.js", "Puppeteer", "Express", "PDF-lib"],
-              linkProjeto: "https://github.com/Milenaalvez/.vscode/tree/main/donnos",
-              linkGitHub: "https://github.com/Milenaalvez/.vscode/tree/main/donnos",
-            },
-            {
-              titulo: "Netflix Cover",
-              imagem: `${base}netflix-cover.png`,
-              imgPosition: "top",
-              descricao: "Sistema inspirado na interface da Netflix desenvolvido com HTML, CSS e JavaScript com o objetivo de proporcionar ao usuário uma experiência visual semelhante à de uma plataforma de streaming. O projeto utiliza responsividade, organização de layout e estilização moderna, além de praticar manipulação de elementos e estruturação de interfaces front-end.",
-              tags: ["HTML", "JavaScript", "CSS"],
-              linkProjeto: "https://milenaalvez.github.io/Netflix--Alura/home.html",
-              linkGitHub: "https://github.com/Milenaalvez/Netflix--Alura",
-            },
-            {
-              titulo: "Banco de Horas",
-              imagem: `${base}banco-de-horas.png`,
-              imgPosition: "10px center",
-              descricao: "Sistema web de banco de horas desenvolvido com HTML, CSS e JavaScript com o objetivo de proporcionar ao usuário uma forma prática de registrar horários e acompanhar o saldo de horas trabalhadas. O projeto utiliza manipulação do DOM, lógica de programação e atualização dinâmica de dados, além de praticar responsividade e estruturação de interfaces front-end.",
-              tags: ["HTML", "JavaScript", "CSS"],
-              linkProjeto: "https://milenaalvez.github.io/Banco-de-Horas/",
-              linkGitHub: "https://github.com/Milenaalvez/Banco-de-Horas",
-            },
-            {
-              titulo: "Portfólio",
-              imagem: `${base}portfolio-novo.png`,
-              imgPosition: "center",
-              descricao: "Portfólio web desenvolvido com HTML, CSS, JavaScript e React com o objetivo de apresentar projetos, habilidades e informações profissionais de forma moderna e organizada. O projeto utiliza responsividade, componentização e estilização personalizada para proporcionar ao usuário uma navegação intuitiva e uma melhor visualização dos conteúdos e tecnologias utilizadas.",
-              tags: ["React", "JavaScript", "Tailwind CSS"],
-              linkProjeto: "https://milenaalvez.github.io/milena-portfolio/#about",
-              linkGitHub: "https://github.com/Milenaalvez/milena-portfolio",
-            },
-          ].map((projeto) => (
-            <div
-              key={projeto.titulo}
-              className="proj-card rounded-[18px] flex flex-col w-full shrink-0"
-              style={{ scrollSnapAlign: 'start' }}
-            >
-              <div className="proj-card-scantop" />
-
-              {/* IMAGEM */}
-              <div className="proj-image-wrap">
-                <img
-                  src={projeto.imagem}
-                  alt={projeto.titulo}
-                  className="proj-image"
-                  style={{ objectPosition: projeto.imgPosition || "center" }}
-                />
-              </div>
-
-              {/* CONTEÚDO */}
-              <div className="proj-content">
-                <h3 className="proj-title">{projeto.titulo}</h3>
-                <p className="proj-desc">{projeto.descricao}</p>
-
-                {/* TAGS */}
-                {projeto.tags.length > 0 && (
-                  <div className="flex items-center gap-[8px]" style={{ marginTop: 14 }}>
-                    {projeto.tags.map((tag) => (
-                      <span key={tag} className="proj-tag">{tag}</span>
-                    ))}
-                  </div>
-                )}
-
-                {/* BOTÕES */}
-                <div className="flex items-center justify-center gap-3" style={{ marginTop: 20 }}>
-                  <a
-                    href={projeto.linkProjeto || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="proj-btn-primary flex items-center justify-center rounded-[10px]"
-                    style={{ width: 140, height: 42 }}
-                  >
-                    Ver mais
-                  </a>
-                  <a
-                    href={projeto.linkGitHub || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="proj-btn-secondary flex items-center justify-center rounded-[10px]"
-                    style={{ width: 120, height: 42 }}
-                  >
-                    GitHub
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
+      <section id="projetos" className="min-h-screen flex flex-col items-center justify-center px-6 md:px-0 relative" style={{ scrollMarginTop: 100 }}>
+        <h2 className="proj-section-title mb-10 md:mb-14">Meus Projetos</h2>
+        <ProjectCarousel projects={projects} />
       </section>
 
       {/* ESPAÇO FERRAMENTAS */}
