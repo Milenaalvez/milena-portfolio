@@ -155,7 +155,7 @@ function App() {
         </div>
 
         <div className="hero-terminal">
-          <span>UI/UX Designer &amp; Full Stack Developer</span>
+          <span>Full Stack Developer</span>
           <span className="hero-terminal-cursor" />
         </div>
 
@@ -175,9 +175,9 @@ function App() {
         </div>
 
         <p className="hero-subtitle">
-          Apaixonada por design UI/UX e desenvolvimento full stack,
-          criando experiências digitais com foco em usabilidade,
-          estética e performance.
+          Full Stack Developer apaixonada por criar websites e
+          experiências digitais que unem funcionalidade, design
+          e performance.
         </p>
 
         {/* ESPAÇO */}
@@ -256,14 +256,13 @@ function App() {
                 conexão e deixar lembranças positivas nas pessoas.
               </p>
               <p className="about-text">
-                Hoje, encontro no design UI/UX e no desenvolvimento
-                full stack uma forma de transformar criatividade em
-                experiências digitais intuitivas, funcionais e
-                significativas. Busco sempre criar projetos que
-                proporcionem uma boa experiência para quem os utiliza,
-                seja através de um site, de uma interface ou de
-                qualquer solução construída com propósito, estética
-                e atenção aos detalhes.
+                Hoje, encontro no desenvolvimento full stack uma
+                forma de transformar criatividade em websites e
+                aplicações funcionais e intuitivas. Amo criar
+                projetos que proporcionem uma boa experiência
+                para quem os utiliza, seja através de um site,
+                de uma interface ou de qualquer solução construída
+                com propósito e atenção aos detalhes.
               </p>
             </div>
           </div>
