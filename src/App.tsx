@@ -509,7 +509,7 @@ function App() {
 
       {/* PROJETOS */}
       <section id="projetos" className="min-h-screen flex flex-col items-center justify-center px-6 md:px-0 relative" style={{ scrollMarginTop: 100 }}>
-        <h2 className="proj-section-title mb-10 md:mb-14">Meus Projetos</h2>
+        <h2 className="proj-section-title mb-16 md:mb-20">Meus Projetos</h2>
         <ProjectCarousel projects={projects} />
       </section>
 
