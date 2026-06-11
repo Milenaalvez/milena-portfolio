@@ -515,10 +515,28 @@ function App() {
 
         {/* CARDS */}
         <div
-          className="flex flex-col md:flex-row items-stretch justify-center gap-6 w-full max-w-[1200px]"
+          className="flex flex-col md:flex-row items-stretch justify-center gap-6 w-full max-w-[1200px] flex-wrap"
           style={{ marginTop: 90 }}
         >
           {[
+            {
+              titulo: "Chronos",
+              imagem: `${base}chronos.png`,
+              imgPosition: "center",
+              descricao: "Sistema completo de gestão de pessoas com registro de jornada, banco de horas, controle de férias, solicitações (tickets) e relatórios. Desenvolvido com React, TypeScript, Node.js, PostgreSQL e Supabase, utiliza autenticação JWT, envio de e-mails e dashboard administrativo com permissões por cargo.",
+              tags: ["React", "TypeScript", "Node.js", "PostgreSQL", "Supabase"],
+              linkProjeto: "https://chronos-blond-gamma.vercel.app",
+              linkGitHub: "https://github.com/Milenaalvez/.vscode/tree/main/chronos",
+            },
+            {
+              titulo: "DONNOS Docs",
+              imagem: `${base}certidoes.png`,
+              imgPosition: "center",
+              descricao: "Plataforma web que automatiza a busca de certidões imobiliárias em portais públicos brasileiros (Receita Federal, TRF1 e TJDFT). Utiliza Puppeteer com stealth para navegação automatizada, resolucão de CAPTCHAs com intervenção humana e consolidação de PDFs em um dossiê único.",
+              tags: ["TypeScript", "Node.js", "Puppeteer", "Express", "PDF-lib"],
+              linkProjeto: "https://github.com/Milenaalvez/.vscode/tree/main/donnos",
+              linkGitHub: "https://github.com/Milenaalvez/.vscode/tree/main/donnos",
+            },
             {
               titulo: "Netflix Cover",
               imagem: `${base}netflix-cover.png`,
@@ -614,7 +632,20 @@ function App() {
         {/* GLOW */}
         <div className="absolute -left-40 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#D8B4FE] opacity-25 blur-[200px]" />
 
-        <h2 className="exp-section-title z-10">
+        <h2
+          className="
+            w-full md:w-[1152px]
+            text-[#F0E6FF]
+            text-[28px] md:text-[42px]
+            font-bold
+            tracking-[-2px]
+            text-center
+            font-['Hanken_Grotesk',sans-serif]
+            relative
+            z-10
+          "
+          style={{ textShadow: '0 0 30px rgba(255,20,147,0.15)' }}
+        >
           Ferramentas
         </h2>
 
