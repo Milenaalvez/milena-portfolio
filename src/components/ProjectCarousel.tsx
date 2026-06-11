@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import type { Project } from '../data/projects'
@@ -9,7 +9,6 @@ interface Props {
 
 export default function ProjectCarousel({ projects }: Props) {
   const N = projects.length
-  const [currentIndex, setCurrentIndex] = useState(0)
   const [itemsPerView, setItemsPerView] = useState(3)
   const [isPaused, setIsPaused] = useState(false)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
@@ -21,10 +20,10 @@ export default function ProjectCarousel({ projects }: Props) {
     ...projects.slice(0, itemsPerView),
   ]
 
+  const currentRef = useRef(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
   const [displayOffset, setDisplayOffset] = useState(baseOffset)
   const needsSnap = useRef(false)
-  const locked = useRef(false)
-  const pendingIdx = useRef(0)
   const snapTransition = useRef(true)
 
   useEffect(() => {
@@ -39,53 +38,57 @@ export default function ProjectCarousel({ projects }: Props) {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  const goNext = useCallback(() => {
-    if (locked.current) return
-    locked.current = true
-    snapTransition.current = true
+  useEffect(() => {
+    if (itemsPerView > 0) {
+      const newBase = itemsPerView
+      setDisplayOffset(newBase + currentRef.current)
+    }
+  }, [itemsPerView])
 
-    const nextIdx = (currentIndex + 1) % N
-    pendingIdx.current = nextIdx
-    if (currentIndex === N - 1) {
+  function goNext() {
+    snapTransition.current = true
+    const cur = currentRef.current
+    const nextIdx = (cur + 1) % N
+    currentRef.current = nextIdx
+    setCurrentIndex(nextIdx)
+
+    if (cur === N - 1) {
       needsSnap.current = true
       setDisplayOffset(baseOffset + N)
     } else {
       setDisplayOffset(baseOffset + nextIdx)
     }
-  }, [currentIndex, N, baseOffset])
+  }
 
-  const goPrev = useCallback(() => {
-    if (locked.current) return
-    locked.current = true
+  function goPrev() {
     snapTransition.current = true
+    const cur = currentRef.current
+    const prevIdx = (cur - 1 + N) % N
+    currentRef.current = prevIdx
+    setCurrentIndex(prevIdx)
 
-    const prevIdx = (currentIndex - 1 + N) % N
-    pendingIdx.current = prevIdx
-    if (currentIndex === 0) {
+    if (cur === 0) {
       needsSnap.current = true
       setDisplayOffset(baseOffset - 1)
     } else {
       setDisplayOffset(baseOffset + prevIdx)
     }
-  }, [currentIndex, N, baseOffset])
+  }
 
   useEffect(() => {
     if (isPaused || N <= 1) return
     intervalRef.current = setInterval(goNext, 5000)
     return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
-  }, [isPaused, goNext, N])
+  }, [isPaused, N])
 
   const cardWidthPercent = 100 / itemsPerView
 
-  const handleAnimationComplete = () => {
+  function handleAnimationComplete() {
     if (needsSnap.current) {
       needsSnap.current = false
-      const newIdx = pendingIdx.current
-      setCurrentIndex(newIdx)
       snapTransition.current = false
-      setDisplayOffset(baseOffset + newIdx)
+      setDisplayOffset(baseOffset + currentRef.current)
     }
-    locked.current = false
   }
 
   return (
@@ -229,8 +232,9 @@ export default function ProjectCarousel({ projects }: Props) {
           <button
             key={i}
             onClick={() => {
-              const fwd = (i - currentIndex + N) % N
-              const bwd = (currentIndex - i + N) % N
+              const cur = currentRef.current
+              const fwd = (i - cur + N) % N
+              const bwd = (cur - i + N) % N
               if (bwd < fwd) for (let j = 0; j < bwd; j++) goPrev()
               else for (let j = 0; j < fwd; j++) goNext()
             }}
