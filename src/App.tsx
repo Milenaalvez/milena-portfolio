@@ -99,7 +99,7 @@ function App() {
         <div
           className="
             w-full
-            h-[72px]
+            h-[88px] md:h-[96px]
             flex
             items-center
             justify-between
@@ -110,7 +110,7 @@ function App() {
         >
 
           {/* LOGO */}
-          <img src={`${base}logotipo.png`} alt="Milena" className="h-10 md:h-12 w-auto" />
+          <img src={`${base}logotipo.png`} alt="Milena" className="h-14 md:h-16 w-auto" />
 
           {/* LINKS */}
           <div className="hidden md:flex items-center gap-14">
