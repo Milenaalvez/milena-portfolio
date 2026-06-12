@@ -4,7 +4,11 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  scroll-behavior:smooth;
+}
+
+*:focus-visible {
+  outline: 2px solid #D8B4FE;
+  outline-offset: 3px;
 }
 
 .carousel-scroll::-webkit-scrollbar {
@@ -519,7 +523,7 @@ html{
 }
 
 .hud-tech-desc {
-  color: rgba(208,188,255,0.75);
+  color: rgba(208,188,255,0.9);
   font-size: 12px;
   line-height: 1.9;
   font-family: "Inter", sans-serif;
@@ -2099,7 +2103,7 @@ html{
   box-shadow: 0 0 8px rgba(216,180,254,0.5);
 }
 .about-text {
-  color: rgba(216,180,254,0.6);
+  color: rgba(216,180,254,0.85);
   font-family: "Inter", sans-serif;
   font-size: 15px;
   line-height: 2.2;
@@ -2375,7 +2379,7 @@ html{
   margin-top: 12px;
 }
 .exp-desc {
-  color: rgba(208,188,255,0.5);
+  color: rgba(208,188,255,0.8);
   font-family: "Inter", sans-serif;
   font-size: 14px;
   line-height: 1.8;
@@ -2815,4 +2819,13 @@ html{
     linear-gradient(rgba(255,20,147,0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,20,147,0.03) 1px, transparent 1px);
   background-size: 60px 60px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

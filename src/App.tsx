@@ -46,6 +46,7 @@ const techId = (name: string) => `hud-${name.toLowerCase().replace(/[^a-z0-9]/g,
 function App() {
   const [modalAberto, setModalAberto] = useState(false);
   const [ferramentaSelecionada, setFerramentaSelecionada] = useState<typeof toolData[0] | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const abrirModal = (ferramenta: typeof ferramentaSelecionada) => {
     setFerramentaSelecionada(ferramenta);
@@ -60,38 +61,38 @@ function App() {
     <main className="bg-[#030205] min-h-screen text-white relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #030205 0%, #080312 50%, #05020A 100%)' }}>
 
       {/* FUNDO HOLOGRAFICO FEMININO */}
-      <div className="hologram-glow" />
-      <div className="scanlines-soft" />
-      <div className="bg-circuit-l" />
-      <div className="bg-circuit-r" />
-      <div className="bg-corner-geo bg-corner-geo-tl" />
-      <div className="bg-corner-geo bg-corner-geo-br" />
-      <div className="bg-hud-ring bg-hud-ring-1" />
-      <div className="bg-hud-ring bg-hud-ring-2" />
-      <div className="bg-particle-lilac bg-pos-1" />
-      <div className="bg-particle-pink bg-pos-2" />
-      <div className="bg-particle-gold bg-pos-3" />
-      <div className="bg-particle-lilac bg-pos-4" />
-      <div className="bg-particle-pink bg-pos-5" />
-      <div className="bg-particle-lilac bg-pos-6" />
-      <div className="bg-particle-gold bg-pos-7" />
-      <div className="bg-particle-pink bg-pos-8" />
-      <div className="bg-dash-line bg-dash-line-t" />
-      <div className="bg-dash-line bg-dash-line-b" />
-      <div className="bg-node bg-node-1" />
-      <div className="bg-node bg-node-2" />
-      <div className="bg-node bg-node-3" />
-      <div className="bg-node bg-node-4" />
-      <div className="bg-node bg-node-5" />
-      <div className="bg-node bg-node-6" />
-      <div className="bg-trace-h bg-trace-h-1" />
-      <div className="bg-trace-h bg-trace-h-2" />
-      <div className="bg-trace-v bg-trace-v-1" />
-      <div className="bg-trace-v bg-trace-v-2" />
-      <div className="bg-bracket bg-bracket-lt" />
-      <div className="bg-bracket bg-bracket-rb" />
-      <div className="bg-signal bg-signal-1" />
-      <div className="bg-signal bg-signal-2" />
+      <div className="hologram-glow" aria-hidden="true" />
+      <div className="scanlines-soft" aria-hidden="true" />
+      <div className="bg-circuit-l" aria-hidden="true" />
+      <div className="bg-circuit-r" aria-hidden="true" />
+      <div className="bg-corner-geo bg-corner-geo-tl" aria-hidden="true" />
+      <div className="bg-corner-geo bg-corner-geo-br" aria-hidden="true" />
+      <div className="bg-hud-ring bg-hud-ring-1" aria-hidden="true" />
+      <div className="bg-hud-ring bg-hud-ring-2" aria-hidden="true" />
+      <div className="bg-particle-lilac bg-pos-1" aria-hidden="true" />
+      <div className="bg-particle-pink bg-pos-2" aria-hidden="true" />
+      <div className="bg-particle-gold bg-pos-3" aria-hidden="true" />
+      <div className="bg-particle-lilac bg-pos-4" aria-hidden="true" />
+      <div className="bg-particle-pink bg-pos-5" aria-hidden="true" />
+      <div className="bg-particle-lilac bg-pos-6" aria-hidden="true" />
+      <div className="bg-particle-gold bg-pos-7" aria-hidden="true" />
+      <div className="bg-particle-pink bg-pos-8" aria-hidden="true" />
+      <div className="bg-dash-line bg-dash-line-t" aria-hidden="true" />
+      <div className="bg-dash-line bg-dash-line-b" aria-hidden="true" />
+      <div className="bg-node bg-node-1" aria-hidden="true" />
+      <div className="bg-node bg-node-2" aria-hidden="true" />
+      <div className="bg-node bg-node-3" aria-hidden="true" />
+      <div className="bg-node bg-node-4" aria-hidden="true" />
+      <div className="bg-node bg-node-5" aria-hidden="true" />
+      <div className="bg-node bg-node-6" aria-hidden="true" />
+      <div className="bg-trace-h bg-trace-h-1" aria-hidden="true" />
+      <div className="bg-trace-h bg-trace-h-2" aria-hidden="true" />
+      <div className="bg-trace-v bg-trace-v-1" aria-hidden="true" />
+      <div className="bg-trace-v bg-trace-v-2" aria-hidden="true" />
+      <div className="bg-bracket bg-bracket-lt" aria-hidden="true" />
+      <div className="bg-bracket bg-bracket-rb" aria-hidden="true" />
+      <div className="bg-signal bg-signal-1" aria-hidden="true" />
+      <div className="bg-signal bg-signal-2" aria-hidden="true" />
 
       {/* NAVBAR */}
       <nav className="w-full flex justify-center fixed top-0 left-0 z-50 pt-6">
@@ -110,26 +111,55 @@ function App() {
         >
 
           {/* LOGO */}
-          <img src={`${base}logotipo.png`} alt="Milena" className="h-14 md:h-16 w-auto" />
+          <img src={`${base}logotipo.png`} alt="Milena" className="h-14 md:h-16 w-auto" loading="lazy" />
 
-          {/* LINKS */}
+          {/* LINKS DESKTOP */}
           <div className="hidden md:flex items-center gap-14">
-            <a href="#about" className="cyber-nav-link">Sobre</a>
-            <a href="#experiencia" className="cyber-nav-link">Experiências</a>
-            <a href="#projetos" className="cyber-nav-link">Projetos</a>
-            <a href="#ferramentas" className="cyber-nav-link">Ferramentas</a>
-            <a href="#contato" className="cyber-nav-link">Contato</a>
+            <a href="#about" className="cyber-nav-link" aria-label="Ir para seção Sobre">Sobre</a>
+            <a href="#experiencia" className="cyber-nav-link" aria-label="Ir para seção Experiências">Experiências</a>
+            <a href="#projetos" className="cyber-nav-link" aria-label="Ir para seção Projetos">Projetos</a>
+            <a href="#ferramentas" className="cyber-nav-link" aria-label="Ir para seção Ferramentas">Ferramentas</a>
+            <a href="#contato" className="cyber-nav-link" aria-label="Ir para seção Contato">Contato</a>
           </div>
 
-          {/* BOTÃO */}
+          {/* BOTÃO WHATSAPP */}
           <a
             href="https://wa.me/61935006766"
             target="_blank"
             rel="noopener noreferrer"
             className="cyber-nav-btn flex items-center justify-center w-[110px] h-[50px] rounded-[10px]"
+            aria-label="Abrir WhatsApp"
           >
             Conectar-se
           </a>
+
+          {/* HAMBURGER MOBILE */}
+          <button
+            className="md:hidden flex items-center justify-center w-10 h-10 text-white"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={menuOpen}
+          >
+            <div className="flex flex-col gap-1.5">
+              <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+              <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+              <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+            </div>
+          </button>
+
+          {/* DRAWER MOBILE */}
+          {menuOpen && (
+            <>
+              <div className="fixed inset-0 z-40 bg-black/60 md:hidden" onClick={() => setMenuOpen(false)} />
+              <div className="fixed top-0 right-0 z-50 h-full w-64 bg-[#0B0812] border-l border-[#2A2533] md:hidden flex flex-col pt-24 px-8 gap-6">
+                <a href="#about" className="cyber-nav-link text-lg" onClick={() => setMenuOpen(false)}>Sobre</a>
+                <a href="#experiencia" className="cyber-nav-link text-lg" onClick={() => setMenuOpen(false)}>Experiências</a>
+                <a href="#projetos" className="cyber-nav-link text-lg" onClick={() => setMenuOpen(false)}>Projetos</a>
+                <a href="#ferramentas" className="cyber-nav-link text-lg" onClick={() => setMenuOpen(false)}>Ferramentas</a>
+                <a href="#contato" className="cyber-nav-link text-lg" onClick={() => setMenuOpen(false)}>Contato</a>
+              </div>
+            </>
+          )}
 
         </div>
 
@@ -191,6 +221,7 @@ function App() {
             target="_blank"
             rel="noopener noreferrer"
             className="hero-btn-primary w-[170px] h-[53px] rounded-[10px] flex items-center justify-center"
+            aria-label="LinkedIn - Perfil profissional"
           >
             LinkedIn
           </a>
@@ -200,6 +231,7 @@ function App() {
             target="_blank"
             rel="noopener noreferrer"
             className="hero-btn-secondary flex items-center justify-center gap-2 w-[150px] h-[54px] rounded-[10px]"
+            aria-label="GitHub - Portfólio de código"
           >
             GitHub
             <FaGithub size={16} />
@@ -285,7 +317,7 @@ function App() {
               <span className="foto-tech-label">IDENTIFICAÇÃO::AGENTE</span>
               <span className="foto-tech-label-right">HUD::ATIVO</span>
 
-              <img src={`${base}milena.jpeg`} alt="Milena Oliveira Alves" className="foto-milena-img" />
+              <img src={`${base}milena.jpeg`} alt="Milena Oliveira Alves" className="foto-milena-img" loading="lazy" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }} />
 
               <div className="foto-grid-overlay" />
 
@@ -578,7 +610,10 @@ function App() {
 
       {/* MODAL HORIZONTAL CYBERPUNK HUD */}
       {modalAberto && ferramentaSelecionada && (
-        <div className="fixed inset-0 z-[999] flex items-center justify-center" style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(14px) brightness(0.5)" }}>
+        <div className="fixed inset-0 z-[999] flex items-center justify-center" style={{ background: "rgba(0,0,0,0.5)", backdropFilter: "blur(14px) brightness(0.5)" }}
+             role="dialog" aria-modal="true" aria-label={ferramentaSelecionada.nome}
+             onKeyDown={(e) => { if (e.key === 'Escape') fecharModal() }}
+        >
           
           {/* OVERLAY DE FECHAR */}
           <div className="absolute inset-0" onClick={fecharModal} />
@@ -750,7 +785,7 @@ function App() {
             </div>
 
             {/* FECHAR */}
-            <button className="hud-modal-close" onClick={fecharModal}>✕</button>
+            <button className="hud-modal-close" onClick={fecharModal} aria-label="Fechar modal" autoFocus>✕</button>
           </div>
         </div>
       )}
@@ -781,11 +816,10 @@ function App() {
           <div className="hud-divider-neon" style={{ margin: '28px auto' }} />
 
           <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=milenayor020@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="mailto:milenayor020@gmail.com"
             className="hero-btn-primary flex items-center justify-center gap-3 rounded-[10px]"
             style={{ width: 280, height: 54, fontSize: 13, textDecoration: 'none' }}
+            aria-label="Enviar email para milenayor020@gmail.com"
           >
             <span>✉</span>
             milenayor020@gmail.com
@@ -802,10 +836,10 @@ function App() {
           </span>
 
           <div className="flex items-center gap-6 flex-wrap justify-center">
-            <a href="https://github.com/Milenaalvez" target="_blank" rel="noopener noreferrer" className="contact-footer-link">GitHub</a>
-            <a href="https://www.behance.net/milenaalves39" target="_blank" rel="noopener noreferrer" className="contact-footer-link">Behance</a>
-            <a href="https://www.linkedin.com/in/milena-de-oliveira-alves-6b04052a6" target="_blank" rel="noopener noreferrer" className="contact-footer-link">LinkedIn</a>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=milenayor020@gmail.com" target="_blank" rel="noopener noreferrer" className="contact-footer-link">Email</a>
+            <a href="https://github.com/Milenaalvez" target="_blank" rel="noopener noreferrer" className="contact-footer-link" aria-label="GitHub">GitHub</a>
+            <a href="https://www.behance.net/milenaalves39" target="_blank" rel="noopener noreferrer" className="contact-footer-link" aria-label="Behance">Behance</a>
+            <a href="https://www.linkedin.com/in/milena-de-oliveira-alves-6b04052a6" target="_blank" rel="noopener noreferrer" className="contact-footer-link" aria-label="LinkedIn">LinkedIn</a>
+            <a href="mailto:milenayor020@gmail.com" className="contact-footer-link" aria-label="Enviar email">Email</a>
           </div>
 
           <span className="text-[#A78BFA] text-[9px] font-['JetBrains_Mono',monospace] tracking-[1px]">© 2026 Milena Oliveira.</span>

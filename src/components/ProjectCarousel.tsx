@@ -25,6 +25,7 @@ export default function ProjectCarousel({ projects }: Props) {
   const [displayOffset, setDisplayOffset] = useState(baseOffset)
   const needsSnap = useRef(false)
   const snapTransition = useRef(true)
+  const touchStartX = useRef(0)
 
   useEffect(() => {
     const handleResize = () => {
@@ -98,6 +99,14 @@ export default function ProjectCarousel({ projects }: Props) {
         style={{ perspective: '1200px' }}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX }}
+        onTouchEnd={(e) => {
+          const diff = touchStartX.current - e.changedTouches[0].clientX
+          if (Math.abs(diff) > 50) {
+            if (diff > 0) goNext()
+            else goPrev()
+          }
+        }}
       >
         <button
           onClick={goPrev}
@@ -181,7 +190,9 @@ export default function ProjectCarousel({ projects }: Props) {
                         src={project.imagem}
                         alt={project.titulo}
                         className="proj-image"
+                        loading="lazy"
                         style={{ objectPosition: project.imgPosition || 'center' }}
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
                       />
                     </div>
                     <div className="proj-content">
@@ -238,6 +249,8 @@ export default function ProjectCarousel({ projects }: Props) {
               if (bwd < fwd) for (let j = 0; j < bwd; j++) goPrev()
               else for (let j = 0; j < fwd; j++) goNext()
             }}
+            aria-label={`Ir para projeto ${i + 1}`}
+            aria-current={i === currentIndex ? 'true' : undefined}
             className={`rounded-full transition-all duration-300 ${
               i === currentIndex
                 ? 'w-6 h-2 bg-gradient-to-r from-[#FF1493] to-[#D8B4FE] shadow-[0_0_10px_rgba(255,20,147,0.3)]'
