@@ -557,7 +557,7 @@ function App() {
 
         <h2
           className="
-            w-full md:w-[1152px]
+            ferramentas-section-title
             text-[#F0E6FF]
             text-[28px] md:text-[42px]
             font-bold
@@ -565,6 +565,7 @@ function App() {
             text-center
             font-['Hanken_Grotesk',sans-serif]
             relative
+            inline-block
             z-10
           "
           style={{ textShadow: '0 0 30px rgba(255,20,147,0.15)' }}

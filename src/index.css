@@ -2424,6 +2424,17 @@ html{
   background: linear-gradient(90deg, transparent, #FF1493, #D8B4FE, transparent);
   box-shadow: 0 0 25px rgba(255,20,147,0.2), 0 0 30px rgba(216,180,254,0.08);
 }
+.ferramentas-section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FF1493, #D8B4FE, transparent);
+  box-shadow: 0 0 25px rgba(255,20,147,0.2), 0 0 30px rgba(216,180,254,0.08);
+}
 .proj-card {
   background: rgba(12,6,28,0.45) !important;
   border: 1px solid rgba(255,20,147,0.08) !important;
