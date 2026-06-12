@@ -829,32 +829,32 @@ function App() {
             <input
               type="text"
               name="nome"
-              placeholder="Seu nome"
+              placeholder="Digite seu nome"
               required
-              className="w-full h-12 px-4 rounded-[10px] bg-[rgba(18,16,25,0.6)] border border-[#2A2533] text-white text-sm font-['Inter',sans-serif] outline-none transition-all duration-200 placeholder:text-[#5F6F89] focus:border-[#D8B4FE] focus:shadow-[0_0_20px_rgba(216,180,254,0.15)]"
+              className="w-full h-[52px] px-5 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)]"
             />
 
             <input
               type="email"
               name="email"
-              placeholder="Seu email"
+              placeholder="seu@email.com"
               required
-              className="w-full h-12 px-4 rounded-[10px] bg-[rgba(18,16,25,0.6)] border border-[#2A2533] text-white text-sm font-['Inter',sans-serif] outline-none transition-all duration-200 placeholder:text-[#5F6F89] focus:border-[#D8B4FE] focus:shadow-[0_0_20px_rgba(216,180,254,0.15)]"
+              className="w-full h-[52px] px-5 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)]"
             />
 
             <input
               type="text"
               name="assunto"
-              placeholder="Assunto"
-              className="w-full h-12 px-4 rounded-[10px] bg-[rgba(18,16,25,0.6)] border border-[#2A2533] text-white text-sm font-['Inter',sans-serif] outline-none transition-all duration-200 placeholder:text-[#5F6F89] focus:border-[#D8B4FE] focus:shadow-[0_0_20px_rgba(216,180,254,0.15)]"
+              placeholder="Ex: Proposta de parceria"
+              className="w-full h-[52px] px-5 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)]"
             />
 
             <textarea
               name="mensagem"
-              placeholder="Sua mensagem"
+              placeholder="Conte sobre seu projeto ou ideia..."
               required
-              rows={4}
-              className="w-full px-4 py-3 rounded-[10px] bg-[rgba(18,16,25,0.6)] border border-[#2A2533] text-white text-sm font-['Inter',sans-serif] outline-none transition-all duration-200 placeholder:text-[#5F6F89] focus:border-[#D8B4FE] focus:shadow-[0_0_20px_rgba(216,180,254,0.15)] resize-none"
+              rows={5}
+              className="w-full px-5 py-4 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)] resize-none"
             />
 
             <button
