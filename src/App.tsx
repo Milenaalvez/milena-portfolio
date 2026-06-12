@@ -815,15 +815,56 @@ function App() {
 
           <div className="hud-divider-neon" style={{ margin: '28px auto' }} />
 
-          <a
-            href="mailto:milenayor020@gmail.com"
-            className="hero-btn-primary flex items-center justify-center gap-3 rounded-[10px]"
-            style={{ width: 280, height: 54, fontSize: 13, textDecoration: 'none' }}
-            aria-label="Enviar email para milenayor020@gmail.com"
+          <form
+            action="https://formsubmit.co/milenayor020@gmail.com"
+            method="POST"
+            className="w-full flex flex-col gap-4"
+            style={{ maxWidth: 440 }}
           >
-            <span>✉</span>
-            milenayor020@gmail.com
-          </a>
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value="https://milenaalvez.github.io/milena-portfolio?enviado=ok" />
+            <input type="text" name="_honey" style={{ display: 'none' }} />
+
+            <input
+              type="text"
+              name="nome"
+              placeholder="Seu nome"
+              required
+              className="w-full h-12 px-4 rounded-[10px] bg-[rgba(18,16,25,0.6)] border border-[#2A2533] text-white text-sm font-['Inter',sans-serif] outline-none transition-all duration-200 placeholder:text-[#5F6F89] focus:border-[#D8B4FE] focus:shadow-[0_0_20px_rgba(216,180,254,0.15)]"
+            />
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Seu email"
+              required
+              className="w-full h-12 px-4 rounded-[10px] bg-[rgba(18,16,25,0.6)] border border-[#2A2533] text-white text-sm font-['Inter',sans-serif] outline-none transition-all duration-200 placeholder:text-[#5F6F89] focus:border-[#D8B4FE] focus:shadow-[0_0_20px_rgba(216,180,254,0.15)]"
+            />
+
+            <input
+              type="text"
+              name="assunto"
+              placeholder="Assunto"
+              className="w-full h-12 px-4 rounded-[10px] bg-[rgba(18,16,25,0.6)] border border-[#2A2533] text-white text-sm font-['Inter',sans-serif] outline-none transition-all duration-200 placeholder:text-[#5F6F89] focus:border-[#D8B4FE] focus:shadow-[0_0_20px_rgba(216,180,254,0.15)]"
+            />
+
+            <textarea
+              name="mensagem"
+              placeholder="Sua mensagem"
+              required
+              rows={4}
+              className="w-full px-4 py-3 rounded-[10px] bg-[rgba(18,16,25,0.6)] border border-[#2A2533] text-white text-sm font-['Inter',sans-serif] outline-none transition-all duration-200 placeholder:text-[#5F6F89] focus:border-[#D8B4FE] focus:shadow-[0_0_20px_rgba(216,180,254,0.15)] resize-none"
+            />
+
+            <button
+              type="submit"
+              className="hero-btn-primary flex items-center justify-center gap-2 rounded-[10px] w-full h-12 text-sm font-semibold cursor-pointer"
+            >
+              <span>✉</span>
+              Enviar mensagem
+            </button>
+          </form>
 
         </div>
         </div>
