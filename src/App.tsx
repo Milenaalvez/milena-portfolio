@@ -816,19 +816,16 @@ function App() {
           <div className="hud-divider-neon" style={{ margin: '28px auto' }} />
 
           <form
-            onSubmit={(e) => {
-              e.preventDefault()
-              const f = e.currentTarget
-              const nome = (f.nome as HTMLInputElement).value
-              const email = (f.email as HTMLInputElement).value
-              const assunto = (f.assunto as HTMLInputElement).value
-              const mensagem = (f.mensagem as HTMLTextAreaElement).value
-              const body = `Nome: ${nome}\nEmail: ${email}\n\n${mensagem}`
-              window.location.href = `mailto:milenayor020@gmail.com?subject=${encodeURIComponent(assunto || 'Contato do Portfólio')}&body=${encodeURIComponent(body)}`
-            }}
+            action="https://formsubmit.co/milenayor020@gmail.com"
+            method="POST"
             className="w-full flex flex-col gap-4"
             style={{ maxWidth: 440 }}
           >
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value="https://milenaalvez.github.io/milena-portfolio?enviado=ok" />
+            <input type="text" name="_honey" style={{ display: 'none' }} />
+
             <input
               type="text"
               name="nome"
@@ -840,7 +837,7 @@ function App() {
             <input
               type="email"
               name="email"
-              placeholder="Seu email para resposta"
+              placeholder="Seu email"
               required
               className="w-full h-12 px-4 rounded-[10px] bg-[rgba(18,16,25,0.6)] border border-[#2A2533] text-white text-sm font-['Inter',sans-serif] outline-none transition-all duration-200 placeholder:text-[#5F6F89] focus:border-[#D8B4FE] focus:shadow-[0_0_20px_rgba(216,180,254,0.15)]"
             />
