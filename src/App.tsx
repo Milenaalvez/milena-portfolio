@@ -170,7 +170,7 @@ function App() {
 
       {/* HERO */}
       <section
-        className="min-h-screen flex flex-col items-center justify-center text-center px-6 relative"
+        className="min-h-screen flex flex-col items-center justify-center px-6 relative"
       >
 
         <div className="hero-hud-wrapper">
@@ -562,7 +562,7 @@ function App() {
             text-[28px] md:text-[42px]
             font-bold
             tracking-[-2px]
-            text-center
+           
             font-['Hanken_Grotesk',sans-serif]
             relative
             inline-block
@@ -600,7 +600,7 @@ function App() {
               }}
             >
               <ferramenta.icon size={28} color="#D0BCFF" />
-              <p className="text-white text-[13px] font-medium font-['Inter',sans-serif] mt-3 text-center leading-tight">
+              <p className="text-white text-[13px] font-medium font-['Inter',sans-serif] mt-3 leading-tight">
                 {ferramenta.nome}
               </p>
             </div>
@@ -807,10 +807,10 @@ function App() {
           <div className="about-card-corner about-card-corner-bl" />
           <div className="about-card-corner about-card-corner-br" />
 
-          <h2 className="text-white text-[28px] md:text-[36px] font-bold font-['Hanken_Grotesk',sans-serif] text-center leading-tight" style={{ textShadow: '0 0 50px rgba(255,20,147,0.15)' }}>
+          <h2 className="text-white text-[28px] md:text-[36px] font-bold font-['Hanken_Grotesk',sans-serif] leading-tight" style={{ textShadow: '0 0 50px rgba(255,20,147,0.15)' }}>
             Vamos trabalhar juntos
           </h2>
-          <p className="text-[#A78BFA] text-[14px] md:text-[15px] font-['Inter',sans-serif] text-center mt-3 max-w-[400px]">
+          <p className="text-[#A78BFA] text-[14px] md:text-[15px] font-['Inter',sans-serif] mt-3 max-w-[400px]">
             Disponível para oportunidades, colaborações e projetos criativos
           </p>
 
@@ -832,7 +832,7 @@ function App() {
               name="nome"
               placeholder="Nome"
               required
-              className="w-full h-[52px] px-5 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] text-center font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)]"
+              className="w-full h-[52px] px-5 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)]"
             />
 
             <input
@@ -840,14 +840,14 @@ function App() {
               name="email"
               placeholder="Email"
               required
-              className="w-full h-[52px] px-5 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] text-center font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)]"
+              className="w-full h-[52px] px-5 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)]"
             />
 
             <input
               type="text"
               name="assunto"
               placeholder="Assunto"
-              className="w-full h-[52px] px-5 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] text-center font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)]"
+              className="w-full h-[52px] px-5 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)]"
             />
 
             <textarea
@@ -855,7 +855,7 @@ function App() {
               placeholder="Mensagem"
               required
               rows={5}
-              className="w-full px-5 py-4 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] text-center font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)] resize-none"
+              className="w-full px-5 py-4 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)] resize-none"
             />
 
             <button
