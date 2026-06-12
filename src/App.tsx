@@ -116,6 +116,7 @@ function App() {
           <div className="hidden md:flex items-center gap-14">
             <a href="#about" className="cyber-nav-link">Sobre</a>
             <a href="#experiencia" className="cyber-nav-link">Experiências</a>
+            <a href="#projetos" className="cyber-nav-link">Projetos</a>
             <a href="#ferramentas" className="cyber-nav-link">Ferramentas</a>
             <a href="#contato" className="cyber-nav-link">Contato</a>
           </div>
