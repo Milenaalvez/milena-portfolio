@@ -831,7 +831,7 @@ function App() {
               name="nome"
               placeholder="Nome"
               required
-              className="w-full h-[52px] px-5 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)]"
+              className="w-full h-[52px] px-5 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] text-center font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)]"
             />
 
             <input
@@ -839,14 +839,14 @@ function App() {
               name="email"
               placeholder="Email"
               required
-              className="w-full h-[52px] px-5 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)]"
+              className="w-full h-[52px] px-5 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] text-center font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)]"
             />
 
             <input
               type="text"
               name="assunto"
               placeholder="Assunto"
-              className="w-full h-[52px] px-5 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)]"
+              className="w-full h-[52px] px-5 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] text-center font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)]"
             />
 
             <textarea
@@ -854,7 +854,7 @@ function App() {
               placeholder="Mensagem"
               required
               rows={5}
-              className="w-full px-5 py-4 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)] resize-none"
+              className="w-full px-5 py-4 rounded-[12px] bg-[rgba(12,10,20,0.7)] border border-[#2A2533] text-white text-[14px] text-center font-['Inter',sans-serif] outline-none transition-all duration-300 placeholder:text-[#4A5578] placeholder:text-[13px] focus:border-[#D8B4FE] focus:shadow-[0_0_25px_rgba(216,180,254,0.12),inset_0_0_25px_rgba(216,180,254,0.03)] focus:bg-[rgba(18,16,28,0.8)] resize-none"
             />
 
             <button
